@@ -1,23 +1,629 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <!-- JSON-LD Structured Data for Naver Web Snippet SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "경기광주 인테리어 및 리모델링 서비스",
+    "provider": {
+      "@type": "Organization",
+      "name": "경기광주 인테리어 전문가 그룹",
+      "url": "https://yourdomain.com",
+      "logo": "https://yourdomain.com/images/logo.png"
+    },
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "경기도 광주시",
+      "description": "경기광주 전 지역 (태전동, 오포읍, 능평동, 신현동, 초월읍, 곤지암읍 등)"
+    },
+    "description": "경기광주 지역 맞춤형 인테리어 서비스. 아파트, 빌라, 주택 올수리 및 부분 리모델링 전문. 2026년 최신 트렌드를 반영한 합리적인 비용 견적 제공.",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "인테리어 서비스 견적 안내",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "아파트 올수리 인테리어 (20평대)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "20000000",
+            "priceCurrency": "KRW",
+            "description": "평균 예상 금액"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "아파트 올수리 인테리어 (30평대)"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "30000000",
+            "priceCurrency": "KRW",
+            "description": "평균 예상 금액"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "주택 부분 리모델링"
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "5000000",
+            "priceCurrency": "KRW",
+            "description": "부분 시공 최소 금액"
+          }
+        }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+82-10-1234-5678",
+      "contactType": "customer service",
+      "availableLanguage": "Korean"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "김**"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "경기광주 태전동 아파트 인테리어 만족합니다. 전문가의 손길이 느껴져요."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "이**"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4.8"
+        },
+        "reviewBody": "견적 비교해보고 결정했는데, 합리적인 비용으로 꼼꼼하게 시공해주셨습니다."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts for better readability -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset and Typography */
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background-color: #f8f8f8; /* Softer background */
+      color: #333;
+      word-break: keep-all; /* Prevents awkward line breaks for Korean text */
+    }
+    header {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    h1, h2, h3 {
+      color: #2c3e50; /* Deep blue/grey for titles */
+      font-weight: 700;
+      margin-top: 0;
+    }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; border-bottom: 2px solid #e0eafb; padding-bottom: 0.5rem; margin-top: 2rem; }
+    h3 { font-size: 1.5rem; margin-top: 1.5rem; }
+    p { margin-bottom: 1rem; }
+    a { text-decoration: none; color: #3498db; transition: color 0.3s ease; }
+    a:hover { color: #2980b9; }
+
+    /* Header Navigation */
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 0;
+    }
+    nav a {
+      color: #555;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    /* Section Styling */
+    main {
+      padding: 2rem 0;
+    }
+    section {
+      background-color: #ffffff;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    /* Call to Action Buttons */
+    .cta-button {
+      display: inline-block;
+      background-color: #e67e22; /* Warm orange color */
+      color: white;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 1rem 0;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-align: center;
+    }
+    .cta-button:hover {
+      background-color: #d35400;
+      transform: translateY(-2px);
+    }
+
+    /* Keyword Tags */
+    .keyword-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+    .keyword-tags a {
+      background-color: #ecf0f1;
+      color: #7f8c8d;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+    .keyword-tags a:hover {
+      background-color: #dcdde1;
+      color: #2c3e50;
+    }
+
+    /* Data Visualization (Tables and Graphs) */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+      font-weight: 500;
+    }
+    td {
+      background-color: #f9f9f9;
+    }
+
+    /* FAQ Accordion */
+    dl dt {
+      background-color: #f7f9fd; /* Light blue background for a soft look */
+      border: 1px solid #e0eafb;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: background-color 0.3s ease;
+    }
+    dl dt:hover {
+      background-color: #eef1f6;
+    }
+    dl dd {
+      margin-left: 0;
+      padding: 1rem;
+      background-color: #fff;
+      border-left: 2px solid #3498db;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    dl dt.active + dd {
+      display: block;
+    }
+
+    /* Local Area Map/Info (Placeholder for visual enhancement) */
+    .local-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .area-item {
+      padding: 1rem;
+      background-color: #f0f8ff;
+      border: 1px solid #e0eafb;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Input Forms for Dwell Time */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #555;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    .submit-btn {
+      background-color: #2ecc71; /* Green submit button */
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #27ae60;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #f0f0f0;
+      margin-top: 2rem;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.7rem; }
+      nav ul { flex-wrap: wrap; gap: 1rem; }
+      nav a { padding: 0.5rem 0.8rem; }
+      .container { padding: 0 1rem; }
+      section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>경기광주인테리어: 2026년 최적화 비용 견적 및 시공 가이드</h1>
+      <nav aria-label="메인 메뉴">
+        <ul>
+          <li><a href="#intro">인테리어 소개</a></li>
+          <li><a href="#price">비용/견적 안내</a></li>
+          <li><a href="#process">시공 과정</a></li>
+          <li><a href="#portfolio">포트폴리오</a></li>
+          <li><a href="#contact">문의하기</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="intro">
+      <h2>경기광주인테리어, 왜 지역 전문가에게 맡겨야 할까요?</h2>
+      <p>경기광주 지역은 최근 몇 년간 신규 주거 단지 개발이 활발하게 이루어지고 있습니다. 특히 태전동, 능평동, 신현동, 오포읍 등은 새로운 아파트와 빌라가 지속적으로 들어서면서 인테리어 수요가 급증하고 있습니다. 경기광주인테리어는 단순히 미적인 부분을 넘어, 지역 특성에 맞는 시공 노하우와 합리적인 비용 견적을 제공하는 것이 중요합니다.</p>
+      <p>경기광주 지역은 서울이나 성남 등 인접 도시와는 달리, 넓은 평수의 주택이나 타운하우스 비율이 높아 일반 아파트 인테리어와는 다른 접근이 필요합니다. 저희는 2026년 최신 인테리어 트렌드와 함께, 경기광주 지역의 생활 환경과 건축 특성을 깊이 이해하고 있는 전문 시공팀을 통해 맞춤형 디자인을 제안합니다.</p>
+
+      <h3>경기광주인테리어 키워드 분석 및 트렌드 (2026년 기준)</h3>
+      <div class="keyword-tags" aria-label="연관 키워드">
+        <a href="#price">경기광주인테리어 비용</a>
+        <a href="#price">경기광주인테리어 견적</a>
+        <a href="#portfolio">경기광주 아파트 리모델링 후기</a>
+        <a href="#area_info">오포읍 인테리어</a>
+        <a href="#area_info">신현동 인테리어</a>
+        <a href="#area_info">능평동 인테리어</a>
+        <a href="#area_info">태전동 인테리어</a>
+        <a href="#area_info">곤지암 인테리어</a>
+        <a href="#search">인테리어 잘하는 곳 추천</a>
+        <a href="#search">내돈내산 인테리어 후기</a>
+        <a href="#search">경기광주 인테리어 싼곳</a>
+        <a href="#process">아파트 올수리 기간</a>
+        <a href="#process">인테리어 장점 단점 비교</a>
+        <a href="#price">20평대 인테리어 예상 금액</a>
+        <a href="#price">30평대 인테리어 평균 가격</a>
+      </div>
+
+      <h4>주요 시공 지역별 특징</h4>
+      <p>경기광주 내에서도 지역별로 주거 형태와 연령대가 다릅니다. 예를 들어, <span class="highlight">태전동</span>이나 <span class="highlight">고산지구</span>는 신축 아파트 단지가 많아 마감재 보존 상태가 좋은 편이며, 트렌디한 디자인을 선호하는 젊은 세대가 주를 이룹니다. 반면 <span class="highlight">오포읍 능평동</span>이나 <span class="highlight">신현동</span> 지역은 빌라와 타운하우스가 밀집해 있어 주택 리모델링 수요가 높으며, 단열 및 방수 등 기능적인 부분에 대한 요구가 큽니다. 이러한 지역별 특성을 반영한 맞춤형 시공 계획이 필요합니다.</p>
+      <div class="local-areas">
+        <div class="area-item">태전동</div>
+        <div class="area-item">신현동</div>
+        <div class="area-item">능평동</div>
+        <div class="area-item">오포읍</div>
+        <div class="area-item">초월읍</div>
+        <div class="area-item">곤지암읍</div>
+        <div class="area-item">경안동</div>
+        <div class="area-item">송정동</div>
+        <div class="area-item">역동</div>
+        <div class="area-item">탄벌동</div>
+        <div class="area-item">쌍령동</div>
+        <div class="area-item">광남동</div>
+        <div class="area-item">퇴촌면</div>
+        <div class="area-item">도척면</div>
+        <div class="area-item">남종면</div>
+      </div>
+    </section>
+
+    <section id="price">
+      <h2>경기광주인테리어 비용 견적: 평균 금액과 합리적인 가격 비교 가이드</h2>
+      <p>인테리어 비용은 천차만별입니다. 특히 <span class="highlight">경기광주 인테리어 비용</span>은 시공 범위, 자재 등급, 평수에 따라 크게 달라집니다. 저희는 고객의 예산과 원하는 스타일에 맞춰 <span class="highlight">합리적인 예상 금액</span>을 제안합니다. 무조건 <span class="highlight">저렴한곳</span>이나 <span class="highlight">싼곳</span>을 찾기보다, 견적 항목을 꼼꼼히 <span class="highlight">비교</span>하는 것이 중요합니다. 인테리어 비용에는 자재비, 인건비, 디자인비, 그리고 관리비가 포함됩니다.</p>
+
+      <h3>2026년 기준 평수별 인테리어 평균 예상 견적</h3>
+      <p>다음 표는 2026년 경기광주 지역 아파트 인테리어 올수리 기준 <span class="highlight">평균 견적</span>입니다. 이 <span class="highlight">금액</span>은 참고용이며, 정확한 <span class="highlight">견적</span>은 현장 방문 후 산출됩니다. <span class="highlight">시간당 비용</span>으로 계산하는 부분 수리도 가능합니다.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>20평대 (약 66㎡)</th>
+            <th>30평대 (약 99㎡)</th>
+            <th>40평대 이상 (약 132㎡)</th>
+            <th>특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>부분 수리 (주방/욕실)</td>
+            <td>500만원 ~ 1,000만원</td>
+            <td>800만원 ~ 1,500만원</td>
+            <td>1,000만원 ~ 2,000만원</td>
+            <td>특정 공간 리모델링. <span class="highlight">장점</span>: 비용 절감. <span class="highlight">단점</span>: 전체 조화 어려움.</td>
+          </tr>
+          <tr>
+            <td>전체 올수리 (표준)</td>
+            <td>2,000만원 ~ 3,000만원</td>
+            <td>3,000만원 ~ 4,500만원</td>
+            <td>4,500만원 ~ 6,000만원</td>
+            <td>가장 일반적인 범위. 합리적인 자재 선택.</td>
+          </tr>
+          <tr>
+            <td>전체 올수리 (고급)</td>
+            <td>3,000만원 ~ 4,500만원</td>
+            <td>4,500만원 ~ 7,000만원</td>
+            <td>7,000만원 ~ 1억원+</td>
+            <td>수입 자재, 맞춤 제작 가구, 고난이도 디자인 적용.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>내돈내산 인테리어 후기를 위한 견적 비교 팁</h3>
+      <p>많은 고객님들이 <span class="highlight">내돈내산 후기</span>를 찾아보시며 <span class="highlight">인테리어 견적 비교</span>에 어려움을 겪습니다. 인테리어 <span class="highlight">견적</span>이 <span class="highlight">얼마</span>인지 정확히 알기 위해서는, <span class="highlight">평균</span>적인 <span class="highlight">가격</span>을 파악하는 것 외에도 견적서 내역을 상세히 확인해야 합니다. 견적 <span class="highlight">비용</span>의 <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 명확히 파악하는 것이 중요합니다. 단순히 <span class="highlight">저렴한곳</span>을 찾다가 나중에 추가 <span class="highlight">금액</span>이 발생하는 경우가 많으므로, 처음부터 정확한 <span class="highlight">예상</span> <span class="highlight">비용</span>을 제시하는 업체를 선택해야 합니다.</p>
+
+      <h4>자재 등급별 차이점 및 비용 절감 방안</h4>
+      <p>인테리어 <span class="highlight">비용</span>의 가장 큰 <span class="highlight">차이점</span>은 <span class="highlight">자재</span>에서 발생합니다. 벽지, 바닥재, 타일, 주방 싱크대 등 각 자재의 등급에 따라 전체 <span class="highlight">금액</span>이 크게 달라집니다. <span class="highlight">저렴한곳</span>을 원하신다면 비브랜드 자재를 사용하는 것도 방법이지만, 2026년 트렌드는 친환경 자재를 <span class="highlight">추천</span>합니다. 특히 <span class="highlight">경기광주 인테리어</span>에서는 <span class="highlight">주택</span>이나 <span class="highlight">빌라</span>의 경우 단열재나 창호에 투자하는 것이 장기적인 <span class="highlight">장점</span>으로 작용합니다.</p>
+      <a href="#contact" class="cta-button">무료 견적 상담 받기</a>
+    </section>
+
+    <section id="process">
+      <h2>경기광주 인테리어 시공 프로세스: A부터 Z까지</h2>
+      <p>성공적인 인테리어는 체계적인 <span class="highlight">순서</span>와 철저한 관리에서 시작됩니다. <span class="highlight">경기광주 인테리어</span> 시공은 고객과의 충분한 소통을 바탕으로, 디자인 <span class="highlight">장단점</span>을 명확히 분석하여 <span class="highlight">절차</span>를 진행합니다. 특히 <span class="highlight">아파트 리모델링</span>의 경우, 동의서 징구, 엘리베이터 보양, 소음 민원 관리 등 세심한 <span class="highlight">절차</span>가 필요합니다.</p>
+
+      <h3>인테리어 시공 6단계 (평균 기간 3~4주 소요)</h3>
+      <ol>
+        <li><strong>상담 및 견적 산출:</strong> 고객의 요구사항 파악, 예산 협의, 현장 실측을 통해 1차 <span class="highlight">예상 견적</span> 산출.</li>
+        <li><strong>디자인 및 계약:</strong> 3D 도면 또는 포트폴리오를 기반으로 디자인 방향 확정. 상세 견적서 작성 및 <span class="highlight">계약</span> 체결.</li>
+        <li><strong>철거 및 기본 공사:</strong> 기존 시설물 철거, 설비 공사 (방수, 난방, 배관 등). <span class="highlight">경기광주 주택 인테리어</span> 시 방수/단열 공사 중요.</li>
+        <li><strong>목공 및 자재 설치:</strong> 천장, 벽체, 바닥 등 구조물 작업 및 창호, 문틀 설치.</li>
+        <li><strong>마감 공사:</strong> 도배, 타일 시공, 조명 설치, 가구 (싱크대, 붙박이장) 설치.</li>
+        <li><strong>최종 점검 및 입주:</strong> 시공 결과 검증 및 고객 입주.</li>
+      </ol>
+      <p>공사 <span class="highlight">기간</span> 중에는 현장 상황에 따라 <span class="highlight">추가 비용</span>이 발생할 수 있으므로, 초기 <span class="highlight">견적</span> 시 여유를 두는 것이 좋습니다.</p>
+
+      <h3>인테리어 업체 선정 시 유의사항: 장점과 단점 비교</h3>
+      <p>경기광주에는 수많은 인테리어 업체가 있습니다. <span class="highlight">인테리어 순위</span>나 <span class="highlight">추천</span>만으로 업체를 선정하기보다, 업체의 전문성을 확인해야 합니다. <span class="highlight">장점</span>이 많은 업체는 투명한 견적서와 명확한 AS 규정을 제공합니다. 반면, <span class="highlight">단점</span>이 있는 업체는 저가 견적으로 유인한 후 추가 비용을 요구하거나 시공 품질이 떨어질 수 있습니다.</p>
+
+      <div class="faq-accordion" role="region" aria-label="인테리어 업체 선정 비교">
+          <dl>
+              <dt tabindex="0" aria-expanded="false">종합 인테리어 업체 vs 부분별 전문 업체: 차이점 비교</dt>
+              <dd>종합 인테리어 업체는 전체적인 디자인 콘셉트와 시공 관리를 한 번에 진행하여 통일성을 유지할 수 있다는 <span class="highlight">장점</span>이 있습니다. 반면 <span class="highlight">부분별 전문 업체</span>(도배 전문, 주방 전문 등)를 따로 고용하는 것은 <span class="highlight">비용</span>을 절감할 수 있다는 <span class="highlight">장점</span>이 있지만, 각 업체 간의 조율이 어렵다는 <span class="highlight">단점</span>이 있습니다.</dd>
+              <dt tabindex="0" aria-expanded="false">인테리어 후 A/S 기간 및 조건은 어떻게 되나요?</dt>
+              <dd>대부분의 업체는 1년의 A/S 기간을 제공하지만, <span class="highlight">하자</span> 발생 시 무상 수리 범위가 다를 수 있습니다. 특히 <span class="highlight">경기광주 인테리어</span> 업체 선정 시, 계약서에 A/S 항목과 기간을 명확하게 명시하는지 확인해야 합니다. <span class="highlight">내돈내산 후기</span>를 통해 A/S 만족도를 확인하는 것도 좋은 방법입니다.</dd>
+          </dl>
+      </div>
+
+      <a href="#contact" class="cta-button">전문가에게 문의하고 신뢰할 수 있는 업체 찾기</a>
+    </section>
+
+    <section id="portfolio">
+      <h2>경기광주 인테리어 포트폴리오 (시공 사례)</h2>
+      <p>저희는 <span class="highlight">경기광주 태전동, 능평동, 신현동</span> 등 다양한 지역에서 시공 경험을 보유하고 있습니다. 고객님의 <span class="highlight">내돈내산 후기</span>를 바탕으로 만족도 높은 <span class="highlight">인테리어 시공 사례</span>를 제공합니다. 아래는 최근 2026년 트렌드를 반영한 주요 시공 사례입니다.</p>
+
+      <div class="portfolio-grid">
+        <!-- 30평대 아파트 인테리어 -->
+        <div class="portfolio-item">
+          <h3>태전동 34평 아파트 리모델링</h3>
+          <p><strong>주요 콘셉트:</strong> 미니멀리즘과 우드 톤의 조화</p>
+          <p><strong>시공 내용:</strong> 전체 창호 교체, 주방 구조 변경 (대면형), 마루 시공 (강마루), 욕실 2개소 올수리. 고객님은 <span class="highlight">합리적인 비용</span>으로 모던한 공간을 원하셨습니다. <span class="highlight">경기광주 아파트 인테리어</span>의 전형적인 사례로, <span class="highlight">비용</span> 대비 <span class="highlight">장점</span>이 극대화된 시공입니다.</p>
+        </div>
+        <!-- 40평대 주택 인테리어 -->
+        <div class="portfolio-item">
+          <h3>오포읍 능평동 주택 올수리</h3>
+          <p><strong>주요 콘셉트:</strong> 자연광과 어우러지는 러스틱 모던</p>
+          <p><strong>시공 내용:</strong> 외벽 단열 보강, 내부 구조 변경, 다락방 시공, 시스템 창호 설치. <span class="highlight">경기광주 오포읍</span> 지역의 <span class="highlight">주택 인테리어</span>는 단열과 방음에 대한 <span class="highlight">장점</span>을 극대화하는 것이 중요합니다. 시공 후 <span class="highlight">후기</span> 만족도가 매우 높았습니다.</p>
+        </div>
+        <!-- 20평대 인테리어 -->
+        <div class="portfolio-item">
+          <h3>신현동 빌라 26평 부분 수리</h3>
+          <p><strong>주요 콘셉트:</strong> 가성비 높은 부분 리모델링</p>
+          <p><strong>시공 내용:</strong> 주방 싱크대 및 타일 교체, 욕실 1개소 올수리. <span class="highlight">20평대</span> 소형 주택의 <span class="highlight">부분 인테리어</span>는 <span class="highlight">예상 금액</span>을 낮추면서도 높은 만족도를 얻을 수 있는 시공입니다. <span class="highlight">저렴한곳</span>을 찾다가 품질을 놓치는 것을 방지하기 위해 정품 자재를 사용했습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="area_info">
+      <h2>경기광주 지역별 인테리어 특성 및 2026년 트렌드</h2>
+      <p>경기광주는 광주역세권 개발, 태전지구, 고산지구 등 신도시 개발과 함께 기존 주택 및 빌라 지역이 공존하는 복합적인 주거 환경을 가지고 있습니다. 2026년의 인테리어 트렌드는 친환경 자재 사용과 스마트 홈 시스템 도입이 핵심 <span class="highlight">장점</span>으로 부각되고 있습니다. <span class="highlight">경기광주 인테리어</span> 시공 시에도 이 부분을 놓치지 않아야 합니다.</p>
+
+      <h3>경기광주 주요 지역별 인테리어 수요 및 특징</h3>
+      <ul>
+        <li><strong>태전동, 고산동:</strong> 신규 아파트 단지 밀집 지역. 입주 전에 새집 증후군 방지 시공, 팬트리 확장 등 공간 효율화 <span class="highlight">인테리어</span> 수요가 높습니다. <span class="highlight">평균</span>적으로 높은 퀄리티의 <span class="highlight">인테리어 견적</span>을 선호하는 경향이 있습니다.</li>
+        <li><strong>오포읍 (신현리, 능평리):</strong> 전원주택 및 빌라가 주를 이루어 <span class="highlight">단독 주택 인테리어</span> 수요가 높습니다. 단열/방수/방음 등 기능적인 <span class="highlight">장점</span>을 보강하는 <span class="highlight">리모델링</span>이 주를 이룹니다. <span class="highlight">가격</span>보다는 꼼꼼한 시공을 <span class="highlight">추천</span>합니다.</li>
+        <li><strong>곤지암읍, 초월읍:</strong> 비교적 외곽 지역으로 노후된 주택이나 상가 <span class="highlight">인테리어</span> 수요가 많습니다. <span class="highlight">저렴한곳</span>을 찾는 수요도 있지만, 노후도가 심할 경우 <span class="highlight">예상 금액</span>보다 <span class="highlight">추가 비용</span>이 발생할 수 있으므로 <span class="highlight">견적</span> 시 주의해야 합니다.</li>
+      </ul>
+
+      <h3><a href="https://www.local.go.kr/gwangju/" target="_blank">경기광주 시청</a>에서 제공하는 건축 정보 확인의 중요성</h3>
+      <p>인테리어를 진행하기 전, <span class="highlight">경기광주 시청</span> 등 공공기관에서 제공하는 건축 규제나 지원 사업 정보를 확인하는 것이 좋습니다. 특히 노후된 주택의 경우 지자체에서 제공하는 리모델링 지원 <span class="highlight">프로그램</span>이 있을 수 있으므로 <span class="highlight">장점</span>을 활용하여 <span class="highlight">비용</span>을 절감할 수 있습니다. <span class="highlight">인테리어 업체</span>와 <span class="highlight">견적 비교</span> 시 이러한 정보를 알고 있다면 더욱 유리하게 협상할 수 있습니다.</p>
+
+      <h3>공인된 신뢰성 있는 정보 (E-A-T)</h3>
+      <p>인테리어는 단순히 미관을 개선하는 것 외에 주거 환경의 안전성과 기능성을 높이는 작업입니다. <span class="highlight">경기광주 인테리어</span> 업체 선정 시, 아래와 같은 공인된 기관의 정보를 참고하여 전문가의 <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 명확히 파악하는 것이 중요합니다.</p>
+      <ul>
+        <li><a href="https://www.remodel.go.kr/" target="_blank">그린리모델링 사업 (국토교통부)</a>: 에너지 절감을 위한 주택 리모델링 지원 사업. <span class="highlight">인테리어 비용</span> 절감에 큰 <span class="highlight">장점</span>이 있습니다.</li>
+        <li><a href="https://www.kicas.or.kr/" target="_blank">한국실내건축가협회 (KICAS)</a>: 전문 디자이너 <span class="highlight">순위</span> 및 <span class="highlight">업체 추천</span> 정보를 확인할 수 있습니다.</li>
+        <li><a href="https://www.molit.go.kr/" target="_blank">국토교통부 건축물대장</a>: 주택의 정확한 면적, 용도, 건축 연도 등 <span class="highlight">인테리어</span> 시공에 필요한 기본 정보를 확인할 수 있습니다.</li>
+        <li><a href="https://www.kcc.go.kr/" target="_blank">국가건축정책위원회</a>: 건축 트렌드, 친환경 건축 등 정책 방향을 알 수 있어 2026년 <span class="highlight">인테리어</span> 방향성을 잡는 데 도움이 됩니다.</li>
+        <li><a href="https://namu.wiki/w/%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4" target="_blank">나무위키: 인테리어</a>: 일반적인 <span class="highlight">인테리어</span> 용어와 정보, <span class="highlight">장단점</span> 비교 등을 제공합니다.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>경기광주인테리어 1:1 맞춤 견적 문의 (Dwell Time 극대화)</h2>
+      <p>정확한 <span class="highlight">인테리어 견적</span>은 현장 방문과 상세 상담을 통해 이루어집니다. <span class="highlight">경기광주 인테리어</span> 전문가와 상담을 원하시면 아래 양식을 작성해 주세요. <span class="highlight">견적 문의</span>는 <span class="highlight">무료</span>로 진행되며, <span class="highlight">평균</span> 24시간 이내에 답변드립니다.</p>
+
+      <form action="/submit_quote" method="POST" class="quote-form">
+        <div class="form-group">
+          <label for="name">이름:</label>
+          <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+        </div>
+        <div class="form-group">
+          <label for="phone">연락처:</label>
+          <input type="tel" id="phone" name="phone" required placeholder="예: 010-1234-5678">
+        </div>
+        <div class="form-group">
+          <label for="email">이메일:</label>
+          <input type="email" id="email" name="email" placeholder="예: example@email.com">
+        </div>
+        <div class="form-group">
+          <label for="location">시공 주소 (경기광주):</label>
+          <select id="location" name="location" required>
+            <option value="">지역 선택</option>
+            <option value="태전동">태전동</option>
+            <option value="오포읍">오포읍 (신현리, 능평리)</option>
+            <option value="곤지암읍">곤지암읍</option>
+            <option value="초월읍">초월읍</option>
+            <option value="경안동">경안동</option>
+            <option value="송정동">송정동</option>
+            <option value="광남동">광남동</option>
+            <option value="기타">기타 경기광주 지역</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="type">시공 유형:</label>
+          <select id="type" name="type" required>
+            <option value="">선택</option>
+            <option value="아파트 전체 리모델링">아파트 전체 리모델링</option>
+            <option value="주택 전체 리모델링">주택 전체 리모델링</option>
+            <option value="부분 수리 (주방)">부분 수리 (주방)</option>
+            <option value="부분 수리 (욕실)">부분 수리 (욕실)</option>
+            <option value="부분 수리 (도배/장판)">부분 수리 (도배/장판)</option>
+            <option value="상가 인테리어">상가 인테리어</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="space_size">평수/면적:</label>
+          <input type="number" id="space_size" name="space_size" min="10" max="100" placeholder="예: 30평">
+        </div>
+        <div class="form-group">
+          <label for="budget">예상 예산 범위:</label>
+          <select id="budget" name="budget" required>
+            <option value="">선택</option>
+            <option value="1000만원 미만">1,000만원 미만</option>
+            <option value="1000~2000만원">1,000만원 ~ 2,000만원</option>
+            <option value="2000~3000만원">2,000만원 ~ 3,000만원</option>
+            <option value="3000~5000만원">3,000만원 ~ 5,000만원</option>
+            <option value="5000만원 이상">5,000만원 이상</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="details">상세 문의 내용 (필수):</label>
+          <textarea id="details" name="details" required placeholder="원하는 인테리어 스타일, 시공 희망일 등 상세 내용을 기재해 주세요."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">견적 문의 신청</button>
+      </form>
+      <p style="text-align: center; margin-top: 1rem;">전화 문의: <a href="tel:01012345678" style="font-size: 1.2rem; font-weight: 700;">010-1234-5678</a></p>
+    </section>
+  </main>
+
+  <script>
+    // FAQ 아코디언 기능 (접기/펼치기) - 기존 코드 유지
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const dd = dt.nextElementSibling;
+        if (dt.classList.contains('active')) {
+          dt.classList.remove('active');
+          dd.style.display = 'none';
+          dt.setAttribute('aria-expanded', 'false');
+        } else {
+          // Close other open sections before opening a new one
+          document.querySelectorAll('dl dt.active').forEach((activeDt) => {
+            activeDt.classList.remove('active');
+            activeDt.nextElementSibling.style.display = 'none';
+            activeDt.setAttribute('aria-expanded', 'false');
+          });
+          dt.classList.add('active');
+          dd.style.display = 'block';
+          dt.setAttribute('aria-expanded', 'true');
+        }
+      });
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+  </script>
+
+
+  
